@@ -25,9 +25,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '0t221e+1_f71-yb)e-!=xi@9b52_#7^d0*ob#@o@f18+hcgi5h'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['news-appl.herokuapp.com','127.0.0.1']
 
 
 # Application definition
