@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Home 
+{% endblock %}
+{% block content %}
+<style>
+ .marquee {
+            height: 30px;
+            overflow: hidden;
+            position: relative;
+            background: #195e83;
+            color: whitesmoke;
+            border: 1px solid #4a4a4a;
+            border-radius: 8px;
+        }
+        
+        .marquee p {
+            position:relative;
+            line-height: 25px;
+            text-align: center;
+            -moz-transform: translateX(100%);
+            -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+            -moz-animation: scroll-left 2s linear infinite;
+            -webkit-animation: scroll-left 2s linear infinite;
+            animation: scroll-left 10s linear infinite;
+        }
+        .marquee p:hover{
+            animation-play-state: paused;
+        }
+        
+        @-moz-keyframes scroll-left {
+            0% {
+                -moz-transform: translateX(100%);
+            }
+            100% {
+                -moz-transform: translateX(-100%);
+            }
+        }
+        
+        @-webkit-keyframes scroll-left {
+            0% {
+                -webkit-transform: translateX(100%);
+            }
+            100% {
+                -webkit-transform: translateX(-100%);
+            }
+        }
+        
+        @keyframes scroll-left {
+            0% {
+                -moz-transform: translateX(100%);
+                -webkit-transform: translateX(100%);
+                transform: translateX(100%);
+            }
+            100% {
+                -moz-transform: translateX(-100%);
+                -webkit-transform: translateX(-100%);
+                transform: translateX(-100%);
+            }
+        }
+</style>
+{% if user.is_authenticated%}
+ Hi {{user.username }}!&nbsp<a href=" {% url 'edit' %}">edit feed</a>
+<div class="marquee">
+    {% for x in fdata %}
+    <p> {{x.newsfeed}} </p>
+    {% endfor %}
+</div>
+<div class="jumbotron">
+    <hl class="display-4">Newspaper app</hl>
+    <p class="lead">A Newspaper website built with Django.</p>
+    <p class="lead">
+    <a class="btn btn-primary btn-lg" href="{% url 'article_list'%}" role="button">View All Articles</a>
+    </p>
+</div>
+{% else %}
+<div class="marquee">
+    {% for x in fdata %}
+    <p> {{x.newsfeed}} </p>
+    {% endfor %}
+</div>
+<div class="jumbotron">
+    <hl class="display-4">Newspaper app</hl>
+    <p class="lead">A Newspaper website built with Django.</p>
+    <p class="lead">
+    <a class="btn btn-primary btn-lg" href="{% url 'article_list'%}" role="button">View All Articles</a>
+    </p>
+</div>
+{% endif %}
+{% endblock %}

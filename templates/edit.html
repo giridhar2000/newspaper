@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+ {% block title %}Edit post 
+ {% endblock %}
+ {% block content %}
+<h2>Edit post</h2>
+<form method="post">
+ {% csrf_token %}
+ {{form}}
+ <input class="btn btn-success ml-2" type="submit" name="Submit">
+ {% endblock %}
